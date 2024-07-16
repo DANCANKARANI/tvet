@@ -1,6 +1,6 @@
 import styles from  "./home.module.css";
 import React, { useState } from 'react';
-import Page from "./home/page";
+import Login from "./login/page";
 
 export default async function Home(){
   async function GetUser(){
@@ -13,7 +13,7 @@ export default async function Home(){
   
   return(
     <div>
-     <Page/>
+     <Login/>
     </div>
   )
 }

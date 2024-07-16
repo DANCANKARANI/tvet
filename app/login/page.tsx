@@ -19,7 +19,7 @@ const Login = () => {
     setError('');
 
     try {
-      const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/v1/student', {
+      const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/v1/student/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
