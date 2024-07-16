@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import "../globals.css";
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const Login = () => {
   const [phone_number, setPhoneNumber] = useState('');
@@ -18,7 +19,7 @@ const Login = () => {
     setError('');
 
     try {
-      const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/v1/student/login', {
+      const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/v1/student', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -89,6 +90,10 @@ const Login = () => {
         <button type="submit" disabled={loading}>
           {loading ? 'Logging in...' : 'Login'}
         </button>
+        <div className="flex flex-row items-center">
+            <p>don't have account?</p>
+            <Link href="/register" className="text-blue-500 ml-2">register</Link>
+        </div>
       </form>
     </div>
   );
