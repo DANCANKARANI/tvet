@@ -51,7 +51,8 @@ const Register = () => {
     };
 
     return (
-        <form onSubmit={handleRegister} className="login-container">
+        <form onSubmit={handleRegister} className="signup
+        -container">
             <h1 className="login-title">Registration page</h1>
             <div className="form-group">
                 <label>Full Name:</label>

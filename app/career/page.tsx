@@ -5,7 +5,7 @@ import Job from "../components/job";
 export default function Career() {
     return (
         <div className="flex flex-col min-h-screen">
-            <div><Navbar/></div>
+            <div><Navbar name={"karani"}/></div>
             <main className="flex-grow mt-40">
                 <Job title={"undefined"} description={"undefined"} application={"undefined"}/>
             </main>
