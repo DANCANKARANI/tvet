@@ -79,11 +79,11 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <FontAwesomeIcon
-              icon={showPassword ? faEyeSlash : faEye}
-              onClick={() => setShowPassword(!showPassword)}
-              className="password-toggle-icon"
-            />
+           <FontAwesomeIcon
+            icon={showPassword ? faEyeSlash : faEye}
+            onClick={() => setShowPassword(prevState => !prevState)}
+            className="password-toggle-icon small-icon"
+          />
           </div>
         </div>
         {error && <p className="error-message">{error}</p>}
