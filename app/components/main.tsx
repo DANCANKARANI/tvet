@@ -1,5 +1,5 @@
 // components/Main.jsx
-import Card from './Card.jsx';
+import Card from './Card';
 
 const Main = () => {
   return (

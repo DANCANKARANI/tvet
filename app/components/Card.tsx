@@ -1,5 +1,12 @@
-// components/Card.jsx
-const Card = ({ title, description }) => {
+// components/Card.tsx
+import React from 'react';
+
+interface CardProps {
+  title: string;
+  description: string | string[];
+}
+
+const Card: React.FC<CardProps> = ({ title, description }) => {
   const renderDescription = () => {
     if (Array.isArray(description)) {
       return (
