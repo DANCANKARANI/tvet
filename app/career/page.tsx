@@ -23,7 +23,7 @@ export default function Career() {
 
     return (
         <div className="flex flex-col min-h-screen">
-            <div><Navbar name={"karani"}/></div>
+            <div><Navbar name={"Idris"}/></div>
             <main className="flex-grow mt-40">
             <section className="section flex  p-20px text-20">
             <div className="header-item">Title</div>

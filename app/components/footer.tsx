@@ -5,19 +5,19 @@ import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   const links = [
-    { id: 1, label: "Home", path: "/" },
+    { id: 1, label: "Home", path: "/home" },
     { id: 2, label: "Careers", path: "/careers" },
     { id: 3, label: "Sponsors", path: "/sponsors" },
-    { id: 4, label: "Jobs", path: "/jobs" },
-    { id: 5, label: "Contact", path: "/contact" },
+    { id: 4, label: "Courses", path: "/Courses" },
+    { id: 5, label: "Contact", path: "/contactus" },
   ];
 
   return (
     <footer className="bg-cream text-blue-500 py-8 px-4 mt-8 bottom-0">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <div className="mb-4 md:mb-0">
-          <h2 className="text-2xl font-bold">Pentabyte</h2>
-          <p>© 2024 Pentabyte. All rights reserved.</p>
+          <h2 className="text-2xl font-bold">Idris</h2>
+          <p>© 2024 Idris. All rights reserved.</p>
         </div>
         <div className="flex space-x-6">
           {links.map(({ id, label, path }) => (

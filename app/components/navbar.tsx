@@ -10,11 +10,11 @@ interface NavbarProps {
 }
 
 const links = [
-  { id: 1, label: "Home", path: "/" },
+  { id: 1, label: "Home", path: "/home" },
   { id: 2, label: "Careers", path: "/career" },
   { id: 3, label: "Sponsors", path: "/sponsors" },
   { id: 4, label: "Courses", path: "/courses" },
-  { id: 5, label: "Contact", path: "/contact" },
+  { id: 5, label: "Contact", path: "/contactus" },
 ];
 
 const Navbar: React.FC<NavbarProps> = ({ name }) => {
