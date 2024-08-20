@@ -17,7 +17,7 @@ const Footer = () => {
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <div className="mb-4 md:mb-0">
           <h2 className="text-2xl font-bold">Idris</h2>
-          <p>© 2024 Idris. All rights reserved.</p>
+          <p>© 2024 Idris & Ayan. All rights reserved.</p>
         </div>
         <div className="flex space-x-6">
           {links.map(({ id, label, path }) => (
