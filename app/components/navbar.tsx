@@ -15,6 +15,7 @@ const links = [
   { id: 3, label: "Sponsors", path: "/sponsors" },
   { id: 4, label: "Courses", path: "/courses" },
   { id: 5, label: "Contact", path: "/contactus" },
+  { id: 6, label: "Payment Tracking", path: "/track-payment" }
 ];
 
 const Navbar: React.FC<NavbarProps> = ({ name }) => {
