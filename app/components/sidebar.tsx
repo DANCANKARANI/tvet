@@ -24,10 +24,10 @@ const Sidebar: FC<SidebarProps> = ({ onSelect }) => {
           Post Jobs
         </li>
         <li
-          className={`p-2 cursor-pointer ${active === 'courses' ? 'bg-gray-700' : ''}`}
-          onClick={() => handleSelect('courses')}
+          className={`p-2 cursor-pointer ${active === 'sponsors' ? 'bg-gray-700' : ''}`}
+          onClick={() => handleSelect('sponsors')}
         >
-          Post Courses
+          Post Sponsors
         </li>
         <li
           className={`p-2 cursor-pointer ${active === 'students' ? 'bg-gray-700' : ''}`}
