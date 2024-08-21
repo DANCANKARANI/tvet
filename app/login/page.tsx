@@ -56,7 +56,7 @@ const Login = () => {
     }
   };
   return (
-    <div className="login-container">
+    <div className="login-container" style={{ backgroundColor: '#e0f7fa', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <h1 className="login-title">Login page</h1>
       <form onSubmit={handleLogin}>
         <div className="form-group">
