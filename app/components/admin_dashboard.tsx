@@ -37,7 +37,7 @@ const JobsSection: FC = () => {
   return (
     <div className="flex">
       <div className="w-1/2 p-4">
-        <h2 className="text-2xl font-bold mb-4">Post Jobs</h2>
+        <h2 className="text-2xl font-bold mb-4">Post Job</h2>
         <PostJob />
       </div>
       <div className="w-1/2 p-4">
