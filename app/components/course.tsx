@@ -21,6 +21,18 @@ const Job: React.FC<CourseProps> = ({ Level:level, CourseName:course_name, KcseG
             <div className="job-item">Business Administration</div>
             <div className="job-item">C plain</div>
         </div>
+        <br />
+        <div className="flex p-20px text-20">
+            <div className="job-item">Artisan</div>
+            <div className="job-item">Catering</div>
+            <div className="job-item">D +</div>
+        </div>
+        <br />
+        <div className="flex p-20px text-20">
+            <div className="job-item">Certificate</div>
+            <div className="job-item">Mechanical Engineering</div>
+            <div className="job-item">C +</div>
+        </div>
     </div>
 );
 
