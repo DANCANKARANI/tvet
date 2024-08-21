@@ -5,8 +5,8 @@ import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 
 interface Student {
   id: string;
-  fullName: string;
-  phoneNumber: string;
+  full_name: string;
+  phone_number: string;
   email: string;
 }
 
@@ -69,8 +69,8 @@ const StudentList: FC = () => {
           {students.map((student) => (
             <li key={student.id} className="bg-gray-100 p-4 rounded-md shadow-sm flex justify-between items-center">
               <div className="flex-1">
-                <h3 className="text-xl font-semibold">{student.fullName}</h3>
-                <p><strong>Phone Number:</strong> {student.phoneNumber}</p>
+                <h3 className="text-xl font-semibold">{student.full_name}</h3>
+                <p><strong>Phone Number:</strong> {student.phone_number}</p>
                 <p><strong>Email:</strong> {student.email}</p>
               </div>
               <div className="flex space-x-2">
