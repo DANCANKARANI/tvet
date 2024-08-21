@@ -17,7 +17,7 @@ const StudentList: FC = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/v1/student');
+        const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/v1/student/all');
         if (!response.ok) {
           throw new Error('Failed to fetch students');
         }
