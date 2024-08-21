@@ -24,7 +24,7 @@ export default function Sponsors() {
 
     return (
         <div className="flex flex-col min-h-screen">
-            <div><Navbar name={"karani"}/></div>
+            <div><Navbar name={""}/></div>
             <main className="flex-grow mt-40">
             <section className="section flex  p-20px text-20">
             <div className="header-item">Name</div>
