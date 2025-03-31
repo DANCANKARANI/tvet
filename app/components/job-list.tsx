@@ -1,7 +1,6 @@
-// components/JobList.tsx
-"use client"
-import { FC, useState, useEffect } from 'react';
-import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
+"use client";
+import { FC, useState, useEffect } from "react";
+import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 interface Job {
   id: string;
@@ -12,18 +11,17 @@ interface Job {
 
 const JobList: FC = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/v1/job');
+        const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/v1/job");
         if (!response.ok) {
-          throw new Error('Failed to fetch jobs');
+          throw new Error("Failed to fetch jobs");
         }
         const data = await response.json();
         setJobs(data.data);
-        console.log(data);
       } catch (error) {
         setErrorMessage("" + error);
       }
@@ -33,27 +31,26 @@ const JobList: FC = () => {
   }, []);
 
   const handleEdit = (id: string) => {
-    // Handle edit logic here
     console.log(`Edit job with id: ${id}`);
   };
 
   const handleDelete = async (id: string) => {
-    // Handle delete logic here
     try {
-        // Simulate form submission to an API
-        const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/v1/job/{id}', {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-  
-        if (!response.ok) {
-          throw new Error('Failed to deletejob');
-        }
-      } catch (error) {
-        setErrorMessage("error:"+error);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/job/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete job");
       }
+
+      setJobs((prevJobs) => prevJobs.filter((job) => job.id !== id));
+    } catch (error) {
+      setErrorMessage("Error: " + error);
+    }
     console.log(`Delete job with id: ${id}`);
   };
 
@@ -67,29 +64,21 @@ const JobList: FC = () => {
             <li key={job.id} className="bg-gray-100 p-4 rounded-md shadow-sm flex justify-between items-center">
               <div className="flex-1">
                 <h3 className="text-xl font-semibold">{job.title}</h3>
-                <p><strong>Role:</strong> {job.role}</p>
-                <p className='break-words'><strong>Application Link:</strong> 
-                <a 
-                href={job.application_link} 
-                className="text-blue-500 hover:underline"
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                {job.application_link}
-              </a>
+                <p>
+                  <strong>Role:</strong> {job.role}
                 </p>
               </div>
               <div className="flex space-x-2">
-                <button 
-                  onClick={() => handleEdit(job.id)}
-                  className="text-blue-200 hover:text-blue-700"
+                <button
+                  onClick={() => window.open(job.application_link, "_blank")}
+                  className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
                 >
+                  Apply
+                </button>
+                <button onClick={() => handleEdit(job.id)} className="text-gray-600 hover:text-gray-800">
                   <PencilIcon className="h-5 w-5" />
                 </button>
-                <button 
-                  onClick={() => handleDelete(job.id)}
-                  className="text-red-500 hover:text-red-700"
-                >
+                <button onClick={() => handleDelete(job.id)} className="text-red-600 hover:text-red-800">
                   <TrashIcon className="h-5 w-5" />
                 </button>
               </div>

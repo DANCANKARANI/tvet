@@ -35,7 +35,7 @@ const PostJob = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-4 bg-white shadow-md rounded-lg">
+    <div className="max-w-lg mx-auto p-4 bg-grey-100 shadow-md rounded-lg">
       <h2 className="text-2xl font-bold mb-4">Post Job</h2>
       {successMessage && <p className="text-green-500 mb-4">{successMessage}</p>}
       {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
