@@ -67,8 +67,8 @@ const Navbar: React.FC<NavbarProps> = ({ name }) => {
             className="flex items-center space-x-1 focus:outline-none"
             aria-label="Profile menu"
           >
-            <FaUserCircle className="text-2xl" />
-            <span className="hidden md:inline">Profile</span>
+            <FaUserCircle className="text-2xl text-blue-500" />
+            <span className="hidden md:inline text-blue-500">Profile</span>
           </button>
 
           {profileOpen && (
@@ -105,7 +105,7 @@ const Navbar: React.FC<NavbarProps> = ({ name }) => {
               </Link>
             </li>
           ))}
-          <li className="py-2 px-4 w-full text-center">
+          <li className="py-2 px-4 w-full text-center ">
             <Link href="/profile" onClick={() => setNavOpen(false)}>
               My Profile
             </Link>

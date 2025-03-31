@@ -93,6 +93,8 @@ export default function Profile() {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar name={user?.full_name || "Guest"} />
+      <br />
+      <br />
       <main className="flex-grow flex flex-col items-center justify-center mt-20">
         <div className="bg-white shadow-md rounded-lg p-6 w-96">
           <h1 className="text-2xl font-bold mb-4">Profile</h1>
