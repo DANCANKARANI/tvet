@@ -1,5 +1,4 @@
-// components/Card.tsx
-import React from 'react';
+import React, { useState } from 'react';
 
 interface CardProps {
   title: string;
@@ -7,26 +6,50 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ title, description }) => {
+  const [expanded, setExpanded] = useState(false);
+  const maxLength = 150; // Characters to show before truncating
+
   const renderDescription = () => {
     if (Array.isArray(description)) {
       return (
-        <ul style={{ padding: "0", listStyleType: "none" }}>
+        <ul className="p-0 list-none">
           {description.map((item, index) => (
-            <li key={index} style={{ wordBreak: "break-word" }}>
+            <li key={index} className="break-words">
               {item}
             </li>
           ))}
         </ul>
       );
     } else {
-      return <p style={{ wordBreak: "break-word" }}>{description}</p>;
+      const displayText = expanded 
+        ? description 
+        : `${description.substring(0, maxLength)}${description.length > maxLength ? '...' : ''}`;
+      
+      return <p className="break-words">{displayText}</p>;
     }
   };
 
+  const showReadMore = !Array.isArray(description) && description.length > maxLength;
+
   return (
-    <div style={{ backgroundColor: "white", boxShadow: "0 4px 8px rgba(0,0,0,0.1)", borderRadius: "8px", padding: "24px", maxWidth: "300px", margin: "16px" }}>
-      <h3 style={{ fontSize: "1.25rem", fontWeight: "600", marginBottom: "8px" }}>{title}</h3>
-      {renderDescription()}
+    <div className="flex flex-col bg-white shadow-md rounded-lg overflow-hidden h-full">
+      <div className="p-6 flex-grow">
+        <h3 className="text-xl font-semibold mb-4">{title}</h3>
+        <div className="text-gray-600">
+          {renderDescription()}
+        </div>
+      </div>
+      
+      {showReadMore && (
+        <div className="p-4 bg-gray-50 border-t border-gray-200">
+          <button 
+            onClick={() => setExpanded(!expanded)}
+            className="text-blue-600 hover:text-blue-800 font-medium"
+          >
+            {expanded ? 'Read Less' : 'Read More'}
+          </button>
+        </div>
+      )}
     </div>
   );
 };

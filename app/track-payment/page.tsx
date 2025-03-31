@@ -1,30 +1,58 @@
-"use client"
-import { FC, useState } from 'react';
-import Navbar from '../components/navbar';
-import Footer from '../components/footer';
+"use client";
+import { FC, useState, useEffect } from "react";
+import Cookies from "js-cookie";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 
 const TrackPaymentPage: FC = () => {
-  const [paymentMethod, setPaymentMethod] = useState<'mpesa' | 'bank' | ''>('');
-  const [paymentCode, setPaymentCode] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState<"mpesa" | "bank" | "">("");
+  const [paymentCode, setPaymentCode] = useState("");
+  const [studentName, setStudentName] = useState("Guest");
 
-  const handlePaymentMethodChange = (method: 'mpesa' | 'bank') => {
+  useEffect(() => {
+    async function fetchStudentName() {
+      try {
+        const authToken = Cookies.get("auth_token");
+        if (!authToken) return;
+
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/student`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`,
+          },
+          credentials: "include",
+        });
+
+        const data = await response.json();
+        if (response.ok && data.data?.full_name) {
+          setStudentName(data.data.full_name);
+        }
+      } catch (error) {
+        console.error("Error fetching student name:", error);
+      }
+    }
+
+    fetchStudentName();
+  }, []);
+
+  const handlePaymentMethodChange = (method: "mpesa" | "bank") => {
     setPaymentMethod(method);
   };
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // Handle the form submission logic here
     console.log(`Payment Method: ${paymentMethod}`);
     console.log(`Payment Code: ${paymentCode}`);
-    
-    // Clear the form fields
-    setPaymentMethod('');
-    setPaymentCode('');
+
+    // Clear form fields
+    setPaymentMethod("");
+    setPaymentCode("");
   };
 
   return (
-    <div>
-      <Navbar name={''}/>
+    <div className="flex flex-col min-h-screen">
+      <Navbar name={studentName} />
       <div className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg flex-grow mt-40">
         <h1 className="text-2xl font-bold mb-6">Track Payment</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -33,15 +61,19 @@ const TrackPaymentPage: FC = () => {
             <div className="flex space-x-4">
               <button
                 type="button"
-                onClick={() => handlePaymentMethodChange('mpesa')}
-                className={`py-2 px-4 rounded-md border ${paymentMethod === 'mpesa' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                onClick={() => handlePaymentMethodChange("mpesa")}
+                className={`py-2 px-4 rounded-md border ${
+                  paymentMethod === "mpesa" ? "bg-blue-500 text-white" : "bg-gray-200"
+                }`}
               >
                 MPESA
               </button>
               <button
                 type="button"
-                onClick={() => handlePaymentMethodChange('bank')}
-                className={`py-2 px-4 rounded-md border ${paymentMethod === 'bank' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                onClick={() => handlePaymentMethodChange("bank")}
+                className={`py-2 px-4 rounded-md border ${
+                  paymentMethod === "bank" ? "bg-blue-500 text-white" : "bg-gray-200"
+                }`}
               >
                 Bank
               </button>
@@ -69,7 +101,7 @@ const TrackPaymentPage: FC = () => {
           </button>
         </form>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

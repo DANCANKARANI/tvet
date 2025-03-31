@@ -8,7 +8,7 @@ const Footer = () => {
     { id: 1, label: "Home", path: "/home" },
     { id: 2, label: "Careers", path: "/careers" },
     { id: 3, label: "Sponsors", path: "/sponsors" },
-    { id: 4, label: "Courses", path: "/Courses" },
+    { id: 4, label: "Courses", path: "/courses" },
     { id: 5, label: "Contact", path: "/contactus" },
   ];
 

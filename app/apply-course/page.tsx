@@ -1,5 +1,6 @@
 "use client"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 
@@ -9,6 +10,34 @@ export default function ApplyCoursePage() {
   const [courseName, setCourseName] = useState('');
   const [courseLevel, setCourseLevel] = useState<'artisan' | 'certificate' | 'diploma' | ''>('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [studentName, setStudentName] = useState('Guest');
+
+  useEffect(() => {
+    async function fetchStudentName() {
+      try {
+        const authToken = Cookies.get("auth_token");
+        if (!authToken) return;
+
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/student`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`,
+          },
+          credentials: "include",
+        });
+
+        const data = await response.json();
+        if (response.ok && data.data?.full_name) {
+          setStudentName(data.data.full_name);
+        }
+      } catch (error) {
+        console.error("Error fetching student name:", error);
+      }
+    }
+
+    fetchStudentName();
+  }, []);
 
   const handleCourseLevelChange = (level: 'artisan' | 'certificate' | 'diploma') => {
     setCourseLevel(level);
@@ -17,25 +46,22 @@ export default function ApplyCoursePage() {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     
-    // Simulate form submission logic here
     console.log(`Name: ${name}`);
     console.log(`Email: ${email}`);
     console.log(`Course Name: ${courseName}`);
     console.log(`Course Level: ${courseLevel}`);
 
-    // Clear form fields
     setName('');
     setEmail('');
     setCourseName('');
     setCourseLevel('');
 
-    // Display success message
     setSuccessMessage('Your application has been submitted successfully!');
   };
 
   return (
     <div>
-      <Navbar name={''} />
+      <Navbar name={studentName} />
       <div className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg flex-grow mt-40">
         <h1 className="text-2xl font-bold mb-6">Apply for a Course</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -75,27 +101,16 @@ export default function ApplyCoursePage() {
           <div>
             <label className="block text-lg font-medium mb-2">Select Course Level</label>
             <div className="flex space-x-4">
-              <button
-                type="button"
-                onClick={() => handleCourseLevelChange('artisan')}
-                className={`py-2 px-4 rounded-md border ${courseLevel === 'artisan' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-              >
-                Artisan
-              </button>
-              <button
-                type="button"
-                onClick={() => handleCourseLevelChange('certificate')}
-                className={`py-2 px-4 rounded-md border ${courseLevel === 'certificate' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-              >
-                Certificate
-              </button>
-              <button
-                type="button"
-                onClick={() => handleCourseLevelChange('diploma')}
-                className={`py-2 px-4 rounded-md border ${courseLevel === 'diploma' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-              >
-                Diploma
-              </button>
+              {['artisan', 'certificate', 'diploma'].map((level) => (
+                <button
+                  key={level}
+                  type="button"
+                  onClick={() => handleCourseLevelChange(level as 'artisan' | 'certificate' | 'diploma')}
+                  className={`py-2 px-4 rounded-md border ${courseLevel === level ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                >
+                  {level.charAt(0).toUpperCase() + level.slice(1)}
+                </button>
+              ))}
             </div>
           </div>
           <button
