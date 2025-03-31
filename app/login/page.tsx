@@ -68,43 +68,55 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container ">
+    <div className="login-container">
       <h1 className="login-title">Login page</h1>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} className="space-y-4">
         <div className="form-group">
-          <label htmlFor="phoneNumber">Phone Number:</label>
+          <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">
+            Phone Number:
+          </label>
           <input
             type="text"
             id="phoneNumber"
             value={phone_number}
             onChange={(e) => setPhoneNumber(e.target.value)}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border"
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password:</label>
-          <div className="password-input-container">
+          <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            Password:
+          </label>
+          <div className="password-input-container relative mt-1">
             <input
               type={showPassword ? "text" : "password"}
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border pr-10"
               required
             />
             <FontAwesomeIcon
               icon={showPassword ? faEyeSlash : faEye}
               onClick={() => setShowPassword(prevState => !prevState)}
-              className="password-toggle-icon small-icon"
+              className="password-toggle-icon absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer"
             />
           </div>
         </div>
-        {error && <p className="error-message">{error}</p>}
-        <button type="submit" disabled={loading}>
+        {error && <p className="error-message text-red-500 text-sm">{error}</p>}
+        <button 
+          type="submit" 
+          disabled={loading}
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+        >
           {loading ? 'Logging in...' : 'Login'}
         </button>
-        <div className="flex flex-row items-center">
-          <p>don't have account?</p>
-          <Link href="/register" className="text-blue-500 ml-2">register</Link>
+        <div className="flex items-center justify-center text-sm">
+          <p className="text-gray-600">Don't have an account?</p>
+          <Link href="/register" className="text-blue-600 hover:text-blue-800 ml-2 font-medium">
+            Register
+          </Link>
         </div>
       </form>
     </div>
