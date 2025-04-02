@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 const PostSponsor = () => {
   const [name, setSponsorName] = useState('');
-  const [role, setRole] = useState('');
+  const [description, setDescription] = useState('');
   const [application_link, setApplicationLink] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -18,7 +18,7 @@ const PostSponsor = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, role, application_link }),
+        body: JSON.stringify({ name, description, application_link }),
       });
 
       if (!response.ok) {
@@ -27,7 +27,7 @@ const PostSponsor = () => {
 
       setSuccessMessage('sponsor posted successfully!');
       setSponsorName('');
-      setRole('');
+      setDescription('');
       setApplicationLink('');
     } catch (error) {
       setErrorMessage("error:"+error);
@@ -51,11 +51,11 @@ const PostSponsor = () => {
           />
         </div>
         <div>
-          <label className="block text-gray-700">Role</label>
+          <label className="block text-gray-700">Description</label>
           <input
             type="text"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             required
           />

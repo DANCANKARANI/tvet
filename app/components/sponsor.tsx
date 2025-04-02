@@ -5,7 +5,7 @@ interface SponsorProps {
     description: string;
     application: string;
 }
-let application_link = "apply"
+
 
 
 const Sponsor: React.FC<SponsorProps> = ({ name, description, application }) => (
